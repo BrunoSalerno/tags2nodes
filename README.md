@@ -4,9 +4,10 @@ tags2nodes
 An OSM tool for attaching relation tags to the member nodes.
 
 You have to specify the osm input file, the relation you want to filter, the postgres user and db data and the program creates a table to store the ouput nodes with 3 columns: id, tags, and geometry.
+
 In the column tags (json stringified by default) you can find, besides the node tags, something like this:
 
-```json
+```
 relations : {relationid1:{name:'relation1 name', id:'relation1 id',...},
             relationid2:{name:'relation2 name', id:'relation2 id',...}}
 ```
