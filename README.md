@@ -6,6 +6,7 @@ An OSM tool for attaching relation tags to the member nodes
 Options
 -------
 
+```
  -f      input osm.pbf file
  -u      postgres user
  -p      postgres password
@@ -17,6 +18,7 @@ Options
  -j      [optional] output projection. Default: WGS84 (4326)
  --json  [optional] json tags field postgres format. Only valid for Postgres >= 9.3. Default: text
  --jsonb [optional] jsonb tags field postgres format (faster!). Only valid for Postgres >= 9.4. Default: text
+ ```
 	
 License
 -------
