@@ -1,6 +1,6 @@
 {
   "name": "tags2nodes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Relation tags to nodes",
   "main": "tags2nodes.js",
   "scripts": {

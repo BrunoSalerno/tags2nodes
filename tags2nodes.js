@@ -7,23 +7,24 @@ var argv = require('minimist')(process.argv.slice(2));
 var postgres=require('./lib/postgres');
 var osm=require('./lib/osm');
 
-if (argv["help"] || argv["h"]) {
+if (argv["help"]) {
 	console.log(" tags2nodes arguments ");
 	console.log(" -f      input osm.pbf file");
 	console.log(" -u      postgres user");
 	console.log(" -p      postgres password");
 	console.log(" -h      postgres host");
 	console.log(" -d      postgres db name");
-  console.log(" -c      osm relation condition json. I.e.: {'route':'subway'}'");
-  console.log(" -r      role of members of relation to be filtered. I.e.: stop"); 
+  console.log(" -c      osm relation condition json (without quotes!). I.e.: {route:subway}");
+  console.log(" -r      [optional] role of members of relation to be filtered. I.e.: stop. Default: all roles");
 	console.log(" -t      [optional] postgres output table name. Default: tags2nodes");
 	console.log(" -j      [optional] output projection. Default: WGS84 (4326)");
 	console.log(" --json  [optional] json tags field postgres format. Only valid for Postgres >= 9.3. Default: text");
 	console.log(" --jsonb [optional] jsonb tags field postgres format (faster!). Only valid for Postgres >= 9.4. Default: text");
+  console.log(" --help  this help");
 	return;
 };
 
-if (!argv["f"] || !argv["u"] || !argv["p"] || !argv["h"] || !argv["d"] || !argv["r"] || !argv["c"]) {
+if (!argv["f"] || !argv["u"] || !argv["p"] || !argv["h"] || !argv["d"] || !argv["c"]) {
 	console.log("Arguments missing");
 	return;
 };
@@ -46,7 +47,11 @@ var db= new postgres.Query;
 
 osm = new osm.Osm(osmread,FILE_PATH, Q);
 
-var relation_conditions = JSON.parse(argv["c"]);
+var json_members=argv["c"].substring(1, argv["c"].length-1).split(":");
+var json={};
+json[json_members[0]]=json_members[1];
+
+var relation_conditions = json;
 var role = argv["r"];
 
 var tags_type='text'; 
@@ -59,7 +64,7 @@ osm.parse(relation_conditions,'relation', function(relations){
 	var nodes={};
 	relations.forEach (function(relation){
 		relation.members.forEach(function(member){
-			if (member.role==role){
+			if ((role && member.role==role) || !role){
 					if (!nodes[member.ref]){
 						nodes[member.ref]={member:member,relations:[]}						
 					}
