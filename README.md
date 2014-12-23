@@ -3,7 +3,22 @@ tags2nodes
 
 An OSM tool for attaching relation tags to the member nodes
 
-Options
+Install
+-------
+
+```
+sudo npm install -g tags2nodes
+```
+or git clone this repository.
+
+Usage
+-----
+
+```
+tags2nodes [arguments]
+```
+
+Arguments
 -------
 
 ```
@@ -12,7 +27,7 @@ Options
  -p      postgres password
  -h      postgres host
  -d      postgres db name
- -c      osm relation condition json. I.e.: {'route':'subway'}'
+ -c      osm relation condition json. I.e.: {'route':'subway'}
  -r      role of members of relation to be filtered. I.e.: stop
  -t      [optional] postgres output table name. Default: tags2nodes
  -j      [optional] output projection. Default: WGS84 (4326)

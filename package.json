@@ -17,6 +17,9 @@
 		"type": "git",
 		"url": "https://github.com/BrunoSalerno/tags2nodes.git"
 	},
+  "bin": {
+    "tags2nodes" : "tags2nodes.js"
+  },
   "author": "Bruno Salerno",
   "license": "MIT"
 }

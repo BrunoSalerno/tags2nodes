@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var osmread=require('osm-read');
 var pg = require('pg').native;
 var Q = require('q');
