@@ -1,6 +1,6 @@
 {
   "name": "tags2nodes",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Relation tags to nodes",
   "main": "tags2nodes.js",
   "scripts": {
@@ -11,7 +11,8 @@
 		"pg":"latest",
 		"pg-native":"latest",
 		"q":"latest",
-		"minimist":"latest"
+		"minimist":"latest",
+    "underscore":"latest"
   },
   "repository": {
 		"type": "git",
